@@ -18,6 +18,13 @@ MuseScore {
 	description: 'Add instrument fingering diagrams to the score'
 	requiresScore: true
 
+	Component.onCompleted : {
+        if (mscoreMajorVersion >= 4) {
+		title = qsTr("Fingering Diagram") ;
+		// thumbnailName = ".png";
+		}
+	}
+
 	/**
 	* Class constructor used to create a new musical part fingering containing its type, range,
 	* mapping, transposition, etc.
@@ -471,7 +478,7 @@ MuseScore {
 			'The Zip file contains the font file you need to install on your device.\n' +
 			'You will also need to restart MuseScore for it to recognize the new font.'
 		onAccepted: {
-			Qt.quit()
+			(typeof(quit) === 'undefined' ? Qt.quit : quit)()
 		}
 	}
 
@@ -483,7 +490,7 @@ MuseScore {
 		text: 'This MuseScore version is not supported.'
 		detailedText:  'In order to run this plugin, you need MuseScore version 3.2.1 or higher.'
 		onAccepted: {
-			Qt.quit()
+			(typeof(quit) === 'undefined' ? Qt.quit : quit)()
 		}
 	}
 
@@ -494,7 +501,7 @@ MuseScore {
 		title: 'No valid score found'
 		text: 'The instruments in this project are not supported or not yet fully implemented. Nothing was changed.'
 		onAccepted: {
-			Qt.quit()
+			(typeof(quit) === 'undefined' ? Qt.quit : quit)()
 		}
 	}
 
@@ -644,6 +651,6 @@ MuseScore {
 			renderFingering();
 		}
 
-		Qt.quit();
+		(typeof(quit) === 'undefined' ? Qt.quit : quit)();
 	}
 }

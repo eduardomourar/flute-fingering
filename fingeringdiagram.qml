@@ -7,6 +7,7 @@
 //     https://github.com/eduardomourar/fiati
 //
 //  Copyright (c) 2019-2023 Eduardo Rodrigues
+//  Copyright (c) 2024 Joachim Schmitz
 //=============================================================================
 import QtQuick 2.8
 import QtQuick.Dialogs 1.1
@@ -18,10 +19,11 @@ MuseScore {
 	description: 'Add instrument fingering diagrams to the score'
 	requiresScore: true
 
+	id: fingeringDiagram
+	//4.4 title:qsTr("Fingering Diagram")
 	Component.onCompleted : {
-        if (mscoreMajorVersion >= 4) {
-		title = qsTr("Fingering Diagram") ;
-		// thumbnailName = ".png";
+        if (mscoreMajorVersion >= 4 && mscoreMinorVersion <= 3) {
+		title = qsTr("Fingering Diagram");
 		}
 	}
 
